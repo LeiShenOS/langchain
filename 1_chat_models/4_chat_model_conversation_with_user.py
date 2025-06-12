@@ -3,10 +3,10 @@ from langchain_openai import ChatOpenAI
 from langchain.schema import AIMessage, HumanMessage, SystemMessage
 
 # Load environment variables from .env
-load_dotenv()
+load_dotenv(override=True)
 
 # Create a ChatOpenAI model
-model = ChatOpenAI(model="gpt-4o")
+model = ChatOpenAI(model="gpt-4o",base_url="https://api.chatanywhere.tech/v1")
 
 
 chat_history = []  # Use a list to store messages

@@ -3,10 +3,10 @@ from langchain.prompts import ChatPromptTemplate
 from langchain_openai import ChatOpenAI
 
 # Load environment variables from .env
-load_dotenv()
+load_dotenv(override=True)
 
 # Create a ChatOpenAI model
-model = ChatOpenAI(model="gpt-4o")
+model = ChatOpenAI(model="gpt-4o",base_url='https://api.chatanywhere.tech/v1')
 
 # PART 1: Create a ChatPromptTemplate using a template string
 print("-----Prompt from Template-----")
@@ -31,10 +31,10 @@ print(result.content)
 # PART 3: Prompt with System and Human Messages (Using Tuples)
 print("\n----- Prompt with System and Human Messages (Tuple) -----\n")
 messages = [
-    ("system", "You are a comedian who tells jokes about {topic}."),
-    ("human", "Tell me {joke_count} jokes."),
+    ("system", "你是一位讲笑话的喜剧演员，你的笑话内容是关于 {topic}."),
+    ("human", "告诉我 {joke_count} 笑话."),
 ]
 prompt_template = ChatPromptTemplate.from_messages(messages)
-prompt = prompt_template.invoke({"topic": "lawyers", "joke_count": 3})
+prompt = prompt_template.invoke({"topic": "数学家", "joke_count": 2})
 result = model.invoke(prompt)
 print(result.content)
